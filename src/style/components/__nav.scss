@@ -5,6 +5,7 @@
     height: 91px;
     align-items: center;
     justify-content: space-between;
+    // position: fixed;
 
     & img{
         width: 178px;
@@ -16,18 +17,20 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        top: 0;
+        // position: fixed;
+        // top: 0;
         bottom: 0;
-        width: 91px;
-        height: 87.3vh;
+        width: 117px;
+        height: auto;
         & img{
             width: 64px;
         }
         & h5{
             color: $white;
             transform: rotate(-90deg);
-            width: 138px;
+            width: 145px;
             font-size: 12px;
+            font-weight: $medium;
         }
     }
 }

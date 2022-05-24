@@ -1,0 +1,51 @@
+.nav{
+    // position: relative;
+    display: flex;
+    background-color: $black;
+    height: 91px;
+    align-items: center;
+    justify-content: space-between;
+
+    & img{
+        width: 178px;
+        margin-left: 2%;
+        margin-right: 3%;
+    }
+
+    &--y{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        top: 0;
+        bottom: 0;
+        width: 91px;
+        height: 87.3vh;
+        & img{
+            width: 64px;
+        }
+        & h5{
+            color: $white;
+            transform: rotate(-90deg);
+            width: 138px;
+            font-size: 12px;
+        }
+    }
+}
+.icons{
+    display: flex;
+    flex-direction: column;
+    height: 316px;
+    justify-content: space-between;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-right: 5%;
+    & a{
+        font-size: 24px;
+        text-decoration: none;
+        color: white;
+        align-items: center;
+    }
+}

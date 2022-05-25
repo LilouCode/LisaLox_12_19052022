@@ -4,19 +4,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    & h1{
-        font-size: 250px;
-        margin-top: 8%;
+    & img{
+        height: 450px;
+        margin-top: 0;
         margin-bottom: 0;
     }
     & h4{
-        font-size: 36px;
-        color: $color-primary;
-        margin-top: 2%;
+        font-size: 26px;
+        color: $grey-dark;
+        margin-top: 0;
         margin-bottom: 2%;
     }
     & a{
-        color: $grey-dark;
+        color: $color-primary;
         font-size: 18px;
         margin-bottom: 7%;
     }

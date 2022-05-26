@@ -1,11 +1,12 @@
 .header{
     & h1{
         font-size: 48px;
-        margin-top: 1%;
+        margin-top: 2%;
         margin-bottom: 0;
     }
     & h2{
         font-size: 18px;
         font-weight: $regular;
+        margin-bottom: 5%;
     }
 }

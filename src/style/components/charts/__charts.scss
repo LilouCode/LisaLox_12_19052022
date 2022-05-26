@@ -1,0 +1,22 @@
+.chart__square{
+    width: 258px;
+    height: 263px;
+    border-radius: 5px;
+}
+.pie{
+    background-color: $grey-light;
+}
+.line{
+    background-color: $color-primary;
+}
+.radar{
+    background-color: $grey-dark;
+}
+
+.charts{
+    &__grid{
+        margin-top: 2%;
+        display: flex;
+        justify-content: space-between;
+    }
+}

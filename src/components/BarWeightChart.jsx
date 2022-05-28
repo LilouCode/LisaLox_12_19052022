@@ -13,7 +13,9 @@ const data = USER_ACTIVITY[1].sessions;
 console.log(data);
 
 const BarWeightChart = () => {
+
   const CustomTooltip = ({ active, payload }) => {
+    
     if (active && payload && payload.length) {
       return (
         <div className="weigth-tooltip">
@@ -25,12 +27,12 @@ const BarWeightChart = () => {
 
     return null;
   };
-  
+
   const getDay = (date) => {
     let day = date.split("-")[2];
-    day = day[0] === "0"? day[1]: day;
-    return day
-  }
+    day = day[0] === "0" ? day[1] : day;
+    return day;
+  };
   return (
     <div className="weight-chart">
       <BarChart
@@ -45,15 +47,21 @@ const BarWeightChart = () => {
           right: 10,
           bottom: 10,
         }}
-      > 
-        <text x={200 / 2} y={50} fill="black" textAnchor="middle" dominantBaseline="right">
-            <tspan fontSize="14">Activité quotidienne</tspan>
+      >
+        <text
+          x={200 / 2}
+          y={50}
+          fill="black"
+          textAnchor="middle"
+          dominantBaseline="right"
+        >
+          <tspan fontSize="14">Activité quotidienne</tspan>
         </text>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        <XAxis dataKey="day" tickFormatter={getDay}/>
+        <XAxis dataKey="day" tickFormatter={getDay} />
         <YAxis
-          tickLine= {false}
-          axisLine = {false}
+          tickLine={false}
+          axisLine={false}
           yAxisId="kilogram"
           dataKey="kilogram"
           domain={["dataMin - 3", "dataMax + 3"]}
@@ -65,8 +73,14 @@ const BarWeightChart = () => {
           domain={["dataMin - 80", "dataMax + 80"]}
           hide
         />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend iconType="circle" iconSize="8" verticalAlign="top" height={80} align="right"/>
+        <Tooltip content={<CustomTooltip />}/>
+        <Legend
+          iconType="circle"
+          iconSize="8"
+          verticalAlign="top"
+          height={80}
+          align="right"
+        />
         <Bar
           name="Poids (kg)"
           yAxisId="kilogram"

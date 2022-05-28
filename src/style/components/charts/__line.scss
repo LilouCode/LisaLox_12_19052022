@@ -1,0 +1,29 @@
+.line{
+	overflow: hidden;
+    &__legend{
+        color: $white;
+        opacity: 0.5;
+        position: absolute;
+        margin-top: -8%;
+        margin-left: 15%;
+        font-size: 15px;
+        font-weight: $medium;
+    }
+}
+.line-tooltip{
+    background-color: $white;
+    color: $black;
+    width: 39px;
+    height: 25px;
+    font-size: 8px;
+    font-weight: $medium;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.recharts-cartesian-axis-ticks{
+    & tspan{
+        margin: 3%;
+    }
+}

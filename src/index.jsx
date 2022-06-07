@@ -1,17 +1,16 @@
 import React from "react";
-import {render} from "react-dom";
+import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./pages/App";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
-import reportWebVitals from './reportWebVitals';
-
+import reportWebVitals from "./reportWebVitals";
 
 render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path= "/" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>

@@ -1,10 +1,13 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { USER_MAIN_DATA } from "../__mocks__/mock";
+import { useData } from "../utils/hooks";
 function PieScoreChart() {
-  const score = USER_MAIN_DATA[1].todayScore;
+  const {data} = useData()
+  console.log("data from PIE CHART",data)
+  const score = data.todayScore? data.todayScore: data.score? data.score: USER_MAIN_DATA[1].todayScore;
   const toDo = 1 - score;
   console.log("score: " + score + " To do: " + toDo);
-  const data = [
+  const dataScore = [
     { name: "score", value: toDo, stroke: "white" },
     { name: "score", value: score, stroke: "red" },
     { reference: 1 },
@@ -25,14 +28,14 @@ function PieScoreChart() {
         <PieChart margin={{ top: 0, bottom: 0 }}>
         
           <Pie
-            data={data}
+            data={dataScore}
             dataKey="reference"
             fill="white"
             outerRadius="60%"
             isAnimationActive={false}
           />
           <Pie
-            data={data}
+            data={dataScore}
             cx="50%"
             cy="50%"
             innerRadius="60%"
@@ -42,7 +45,7 @@ function PieScoreChart() {
             endAngle={540}
             dataKey="value"
           >
-            {data.map((entry, index) => (
+            {dataScore.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}

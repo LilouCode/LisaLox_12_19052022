@@ -7,10 +7,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { USER_PERFORMANCE } from "../__mocks__/mock";
-
-const data = USER_PERFORMANCE[1].data;
-// const kind = USER_PERFORMANCE[1].kind;
-console.log("User performances:", data);
+import { useData } from "../utils/hooks";
 
 //traduction
 const frenchTranslator = {
@@ -48,6 +45,10 @@ const getTittle = (props) => {
 };
 
 function RadarPerformanceChart() {
+  const {dataPerformance} = useData()
+  const data = dataPerformance.data? dataPerformance.data : USER_PERFORMANCE[1].data;
+// const kind = USER_PERFORMANCE[1].kind;
+console.log("User performances:", data);
   return (
     <div className="chart__square radar">
       <ResponsiveContainer height="100%" width="100%">

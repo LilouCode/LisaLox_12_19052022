@@ -8,12 +8,12 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-
-const data = USER_ACTIVITY[1].sessions;
-console.log(data);
+import { useData } from "../utils/hooks";
 
 const BarWeightChart = () => {
-
+  const {dataActivity} = useData();
+  const data = dataActivity.sessions? dataActivity.sessions : USER_ACTIVITY[1].sessions;
+  console.log("BAR chart",dataActivity.sessions);
   const CustomTooltip = ({ active, payload }) => {
     
     if (active && payload && payload.length) {

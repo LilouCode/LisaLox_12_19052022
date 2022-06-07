@@ -11,14 +11,15 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-//Data
-const dataGoals = USER_AVERAGE_SESSIONS[1].sessions;
-const dataDate = USER_ACTIVITY[1].sessions;
-console.log(dataGoals);
+import { useData } from "../utils/hooks";
 
 ////////Fonctions////////
 
-//Get day
+function LineSessionChart() {
+  const {dataActivity, dataSessions} = useData();
+  const dataGoals = dataSessions.sessions? dataSessions.sessions: USER_AVERAGE_SESSIONS[1].sessions;
+  const dataDate = dataActivity.sessions? dataActivity.sessions: USER_ACTIVITY[1].sessions;
+  //Get day
 const formatDay = (num) => {
   const date = new Date(dataDate[num - 1].day);
   const week = ["D", "L", "M", "M", "J", "V", "S"];
@@ -52,7 +53,6 @@ const CustomCursor = (props) => {
   }
   return null;
 };
-function LineSessionChart() {
   return (
     <div className="chart__square line">
       <ResponsiveContainer width="100%" height="100%">

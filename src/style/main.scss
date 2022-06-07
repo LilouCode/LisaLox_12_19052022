@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "./utils/_animations";
 @import './utils/_maps';
 @import './utils/_mixins';
 @import './utils/_variables';
@@ -8,6 +9,7 @@
 @import './components/charts/_line';
 @import './components/charts/_radar';
 @import './components//charts/_pie';
+@import './components/service/_service';
 @import './components/_asside';
 @import './components/_header';
 @import './components/_nav';

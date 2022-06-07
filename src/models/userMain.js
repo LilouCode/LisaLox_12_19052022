@@ -3,11 +3,12 @@ export default class userMain{
         id,
         keyData,
         score,
+        todayScore,
         userInfos
     }) {
         this._id = id;
         this._keyData = keyData;
-        this._score= score;
+        this._score= score || todayScore;
         this._userInfos = userInfos;
     }
 

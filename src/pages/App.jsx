@@ -3,22 +3,21 @@ import "../style/main.scss";
 import NavVertical from "../components/NavVertical";
 import NavHorizontal from "../components/NavHorizontal";
 import DevSection from "../components/DevSection";
-import { SourceProvider, DataProvider, IdProvider } from "../utils/context";
+import { SourceProvider, DataProvider } from "../utils/context";
+
 function App() {
   return (
     <SourceProvider>
-      <IdProvider>
       <DataProvider>
-      <div>
-        <DevSection />
-        <NavHorizontal />
-        <div className="app">
-          <NavVertical />
-          <Outlet />
+        <div>
+          <DevSection />
+          <NavHorizontal />
+          <div className="app">
+            <NavVertical />
+            <Outlet />
+          </div>
         </div>
-      </div>
       </DataProvider>
-      </IdProvider>
     </SourceProvider>
   );
 }

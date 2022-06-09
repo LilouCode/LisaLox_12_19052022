@@ -64,24 +64,72 @@ export const DataProvider = ({ children }) => {
   const [dataPerformanceMock, setDataPerformanceMock] = useState({});
   const [dataPerformance, setDataPerformance] = useState({});
 
-  const [error, setError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setLoading] = useState(true)
+  const [error, setError] = useState('');
   const { source } = useSource();
 
   //GET MAIN DATA
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/user/18")
-      .then((res) => {
-        console.log("API getting from Data Provider : ", res.data.data);
-        const array = new userMain(res.data.data);
-        console.log("API object from Data Provider : ", array);
-        setDataApi(array);
-      })
-      .catch((err) => {
-        setError(true);
-        console.log(err);
-      });
-  }, []);
+  useEffect(() =>{
+    
+    setLoading(true)
+    async function fetchApi() {
+      try {
+        const response = await fetch('http://localhost:3000/user/18')
+        const data = await response.json()
+        setDataApi(data.data)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchApi()
+  }, [])
+  // useEffect(() =>{
+  //   setIsLoaded(false)
+  //   async function getDataApi(){
+  //     const solution = await axios.get("http://localhost:3000/user/18")
+  //         .then((res) => {
+  //           const array = new userMain(res.data.data);
+  //           console.log("MAIN API object from Data Provider : ", array);
+  //           setDataApi(array);
+  //           setIsLoaded(true)
+  //         },
+  //         (error) => {
+  //           setError(error);
+  //           console.log(error);
+  //           setIsLoaded(true)
+  //         });
+  //         return solution
+  //   }
+  //   getDataApi()
+  // }, [])
+  
+
+
+
+
+
+
+
+
+    // useEffect(() => {
+    //   axios
+    //     .get("http://localhost:3000/user/18")
+    //     .then(async (res) => {
+    //       const array = new userMain(await res.data.data);
+    //       console.log("MAIN API object from Data Provider : ", array);
+    //       setDataApi(array);
+    //       setIsLoaded(true)
+    //     },
+    //     (error) => {
+    //       setError(error);
+    //       console.log(error);
+    //       setIsLoaded(true)
+    //     });
+    // }, []);
 
   useEffect(() => {
     let mock = [];
@@ -89,7 +137,10 @@ export const DataProvider = ({ children }) => {
       return element.id === 12;
     });
     mock = new userMain(user);
+    // console.log("ICI :::::::",mock)
     setDataMock(mock);
+    setData(mock)
+    
   }, []);
 
   //GET ACTIVITY DATA
@@ -98,13 +149,14 @@ export const DataProvider = ({ children }) => {
       .get("http://localhost:3000/user/18/activity")
       .then((res) => {
         const array = new userActivity(res.data.data);
-        console.log("ACTIVITY API object from Data Provider : ", array);
+        // console.log("ACTIVITY API object from Data Provider : ", array);
         setDataActivityApi(array);
       })
       .catch((err) => {
         setError(true);
         console.log(err);
       });
+      
   }, []);
 
   useEffect(() => {
@@ -121,7 +173,7 @@ export const DataProvider = ({ children }) => {
       .get("http://localhost:3000/user/18/average-sessions")
       .then((res) => {
         const array = new userAverageSessions(res.data.data);
-        console.log("Average SESSIONS API object from Data Provider : ", array);
+        // console.log("Average SESSIONS API object from Data Provider : ", array);
         setDataSessionsApi(array);
       })
       .catch((err) => {
@@ -144,7 +196,7 @@ export const DataProvider = ({ children }) => {
       .get("http://localhost:3000/user/18/performance")
       .then((res) => {
         const array = new userPerformance(res.data.data);
-        console.log("Average Performance API object from Data Provider : ", array);
+        // console.log("Average Performance API object from Data Provider : ", array);
         setDataPerformanceApi(array);
       })
       .catch((err) => {
@@ -161,10 +213,13 @@ export const DataProvider = ({ children }) => {
     mock = new userPerformance(user);
     setDataPerformanceMock(mock);
   }, []);
-
+    
+    // setDataActivity(source === "mock" ? {dataActivityMock}.dataActivityMock : { dataActivityApi}.dataActivityApi);
+    // setDataSessions(source === "mock" ? {dataSessionsMock}.dataSessionsMock : {dataSessionsApi}.dataSessionsApi);
+    // setDataPerformance(source === "mock" ? {dataPerformanceMock}.dataPerformanceMock : {dataPerformanceApi}.dataPerformanceApi);
   ///
   const toggleData = () => {
-    setData(source === "mock" ? { dataMock }.dataMock : { dataApi }.dataApi);
+    setData(source === "mock" ?  { dataApi }.dataApi: { dataMock }.dataMock);
     setDataActivity(source === "mock" ? {dataActivityMock}.dataActivityMock : { dataActivityApi}.dataActivityApi);
     setDataSessions(source === "mock" ? {dataSessionsMock}.dataSessionsMock : {dataSessionsApi}.dataSessionsApi);
     setDataPerformance(source === "mock" ? {dataPerformanceMock}.dataPerformanceMock : {dataPerformanceApi}.dataPerformanceApi);
@@ -173,9 +228,10 @@ export const DataProvider = ({ children }) => {
     console.log("ToggleData SESSIONS from ", source, dataSessions);
     console.log("ToggleData PERFORMANCE from ", source, dataPerformance);
   };
+
   return (
     <DataContext.Provider
-      value={{ data, dataActivity, dataSessions, dataPerformance, error, toggleData }}
+      value={{ data, dataApi, dataMock, dataActivity, dataSessions, dataPerformance,isLoaded, isLoading, error, toggleData }}
     >
       {children}
     </DataContext.Provider>

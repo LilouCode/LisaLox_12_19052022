@@ -12,20 +12,24 @@ import carbs from "../assets/svg/carbs.svg";
 import lipids from "../assets/svg/lipids.svg";
 // import { USER_MAIN_DATA } from "../__mocks__/mock.js";
 import {useData} from "../utils/hooks"
-
+import {useFetch} from '../service/service';
 function Dashboard() {
   // let userMain = USER_MAIN_DATA[1];
-
-  const {data} = useData();
+  const { data, isLoading, error } = useFetch();
+  // const {data, isLoading, error} = useData();
   
-  console.log("data dashboard ", data.userInfos? data.userInfos.lastName: null);
-  console.log("data key: ", data.keyData? data.keyData.lipidCount : null)
+ 
   return (
     <div className="dashboard">
-      <Header
-        title={ data.userInfos? data.userInfos.firstName: null}
+        {isLoading? (
+          <p>Chargement en cours...</p>
+        ): (
+          <Header
+        title={ data.userInfos? data.userInfos.firstName: "?"}
         subtitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
       />
+        )}
+      
       <div className="main">
         <div className="charts">
           <div>

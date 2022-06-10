@@ -1,4 +1,3 @@
-// import { useParams} from "react-router-dom";
 import React from "react";
 import Header from "../components/Header";
 import BarWeightChart from "../components/BarWeightChart";
@@ -10,30 +9,29 @@ import calories from "../assets/svg/calories.svg";
 import proteins from "../assets/svg/proteins.svg";
 import carbs from "../assets/svg/carbs.svg";
 import lipids from "../assets/svg/lipids.svg";
-// import { USER_MAIN_DATA } from "../__mocks__/mock.js";
-import {useData} from "../utils/hooks"
 import {useFetch} from '../service/service';
+import Loader from "./Loader";
+
 function Dashboard() {
-  // let userMain = USER_MAIN_DATA[1];
-  const { data, isLoading, error } = useFetch();
-  // const {data, isLoading, error} = useData();
-  
+
+  const { data, isLoading } = useFetch();
  
   return (
     <div className="dashboard">
-        {isLoading? (
-          <p>Chargement en cours...</p>
-        ): (
+        {isLoading? <Loader/>
+        : 
           <Header
-        title={ data.userInfos? data.userInfos.firstName: "?"}
+        title={ data.userInfos.firstName}
         subtitle="Félicitation ! Vous avez explosé vos objectifs hier 👏"
       />
-        )}
+      }
       
       <div className="main">
         <div className="charts">
           <div>
+            {isLoading? <Loader/> :
             <BarWeightChart />
+            }
           </div>
           <div className="charts__grid">
             <LineSessionChart />
@@ -46,25 +44,25 @@ function Dashboard() {
             className="icon icon--calories"
             src={calories}
             name="calories"
-            keyInfo={data.keyData? data.keyData.calorieCount :null}
+            keyInfo={!isLoading? data.keyData.calorieCount :null}
           />
           <KeyInfos
             className="icon icon--proteins"
             src={proteins}
             name="protéines"
-            keyInfo={data.keyData? data.keyData.proteinCount : null}
+            keyInfo={!isLoading? data.keyData.proteinCount : null}
           />
           <KeyInfos
             className="icon icon--carbs"
             src={carbs}
             name="glucides"
-            keyInfo={data.keyData? data.keyData.carbohydrateCount : null}
+            keyInfo={!isLoading? data.keyData.carbohydrateCount : null}
           />
           <KeyInfos
             className="icon icon--lipids"
             src={lipids}
             name="lipides"
-            keyInfo={data.keyData? data.keyData.lipidCount : null}
+            keyInfo={!isLoading? data.keyData.lipidCount : null}
           />
         </div>
       </div>

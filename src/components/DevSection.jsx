@@ -1,10 +1,6 @@
-import { useSource, useData } from "../utils/hooks"; //useId
-import {useFetch} from "../service/service";
+import { useSource} from "../utils/hooks";
 function DevSection() {
   const { toggleSource, source } = useSource();
-  // const { toggleId, id } = useId();
-  // const { data, isLoading, error } = useFetch();
-  const { toggleData, dataApi } = useData();
   return (
     <div className="service">
       <h5>| Dev section |</h5>
@@ -16,26 +12,10 @@ function DevSection() {
               ? "service__btn"
               : " service__btn service__btn--mock"
           }
-          onClick={() => {
-            toggleSource();
-            toggleData();
-          }
-          }
+          onClick={() => {toggleSource()}}
         >
           {source === "api" ? "Api" : "Mock"}
         </button>
-
-      {/* <button
-        className={
-          id === 12 ? "service__btn service__btn--12" : " service__btn service__btn--18"
-        }
-        onClick={() => {
-          toggleId();
-          toggleData();
-        }}
-      >
-        {id === 12 ? 18 : 12}
-      </button> */}
       <button className="service__btn service__btn--close ">X</button>
     </div>
   );

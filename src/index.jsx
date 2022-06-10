@@ -2,7 +2,6 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./pages/App";
-import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import reportWebVitals from "./reportWebVitals";

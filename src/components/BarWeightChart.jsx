@@ -1,4 +1,3 @@
-import { USER_ACTIVITY } from "../__mocks__/mock";
 import {
   BarChart,
   Bar,
@@ -8,12 +7,13 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-import { useData } from "../utils/hooks";
+import { useFetch } from "../service/service";
+import Loader from "../pages/Loader";
 
 const BarWeightChart = () => {
-  const {dataActivity} = useData();
-  const data = dataActivity.sessions? dataActivity.sessions : USER_ACTIVITY[1].sessions;
-  console.log("BAR chart",dataActivity.sessions);
+  const {dataActivity, isLoading} = useFetch();
+
+  const data = dataActivity.sessions;
   const CustomTooltip = ({ active, payload }) => {
     
     if (active && payload && payload.length) {
@@ -35,19 +35,20 @@ const BarWeightChart = () => {
   };
   return (
     <div className="weight-chart">
+      {isLoading? <Loader/>:
       <BarChart
-        width={835}
-        height={320}
-        barGap={8}
-        barSize={8}
-        data={data}
-        margin={{
-          left: 20,
-          top: 40,
-          right: 10,
-          bottom: 10,
-        }}
-      >
+      width={835}
+      height={320}
+      barGap={8}
+      barSize={8}
+      data={data}
+      margin={{
+        left: 20,
+        top: 40,
+        right: 10,
+        bottom: 10,
+      }}>
+      
         <text
           x={200 / 2}
           y={50}
@@ -95,7 +96,7 @@ const BarWeightChart = () => {
           fill="#E60000"
           radius={[3.5, 3.5, 0, 0]}
         />
-      </BarChart>
+      </BarChart>}
     </div>
   );
 };

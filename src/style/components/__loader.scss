@@ -1,0 +1,25 @@
+.home{
+    display: flex;
+}
+.loader{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    color: $grey;
+    width: 800px;
+    height: 100vh;
+    font-size: 30px;
+    & p{
+        align-self: center;
+    }
+    &__icon{
+        align-self: center;
+        width: 40px;
+        height: 40px;
+        background-color: $color-primary--light;
+        border-radius: 100%;
+        animation: bounce-top 3s ease-out infinite alternate both;
+    }
+    
+}

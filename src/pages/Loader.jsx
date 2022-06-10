@@ -1,7 +1,8 @@
 function Loader() {
     return(
         <div className="loader">
-            Chargement des données
+            <div className="loader__icon"></div>
+            <p>Chargement des données</p>
         </div>
     )
 } export default Loader

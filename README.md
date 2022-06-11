@@ -74,6 +74,9 @@ If you want to change user, you just have to change this parameter in the ```/sr
 ## Work files
 This work was done following the [Kanban](https://www.notion.so/Tableau-de-bord-SportSee-2b9e0bf527eb4e14908e386556b29a9c) method and respecting the [Figma](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1) model.
 
+Before starting this project, I drew this algorithm to better organize my work:
+![algorithmAPI](https://github.com/LilouCode/LisaLox_12_19052022/blob/master/src/doc/brainstormingAlgo.png)
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

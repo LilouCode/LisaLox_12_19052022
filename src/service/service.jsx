@@ -25,26 +25,29 @@ export function useFetch() {
   useEffect(() => {
     setLoading(true);
     let mounted = true;
+    const CancelToken = axios.CancelToken;
+    const sources = CancelToken.source();
 
     async function fetchApi() {
+      
       try {
-        if (mounted) {
-          const response = await axios.get("http://localhost:3000/user/18");
+          const response = await axios.get("http://localhost:3000/user/18", { cancelToken: sources.token });
           const responseActivity = await axios.get(
-            "http://localhost:3000/user/18/activity"
+            "http://localhost:3000/user/18/activity", { cancelToken: sources.token }
           );
           const responseAverageSessions = await axios.get(
-            "http://localhost:3000/user/18/average-sessions"
+            "http://localhost:3000/user/18/average-sessions", { cancelToken: sources.token }
           );
           const responsePerformance = await axios.get(
-            "http://localhost:3000/user/18/performance"
+            "http://localhost:3000/user/18/performance", { cancelToken: sources.token }
           );
-          const data = await response;
+          if (mounted) {
+          const dataUser = await response;
           const dataActivity = await responseActivity;
           const dataSessions = await responseAverageSessions;
           const dataPerformance = await responsePerformance;
-
-          const dataUserMain = new userMain(data.data.data);
+          
+          const dataUserMain = new userMain(dataUser.data.data);
           const dataUserActivity = new userActivity(dataActivity.data.data);
           const dataUserSessions = new userAverageSessions(
             dataSessions.data.data
@@ -58,16 +61,23 @@ export function useFetch() {
           setDataPerformance(dataUserPerformance);
         }
       } catch (err) {
-        console.log(err);
+        if (!mounted) return;
         setError(true);
         toggleSource();
         fetchMock(12);
-        alert(
-          "Vous n'êtes pas connecter avec l'API, vous allez être redirigé vers les données mockés"
-        );
       } finally {
         setLoading(false);
+      }
+      return () =>{
         mounted = false;
+        setError(false)
+        sources.cancel();
+        setData({})
+        setDataActivity({
+        })
+        setDataSessions({})
+        setDataPerformance({})
+        
       }
     }
 
@@ -102,14 +112,18 @@ export function useFetch() {
         setError(true);
       } finally {
         setLoading(false);
-        mounted = false;
       }
     }
 
     source === "mock" ? fetchMock(12) : fetchApi();
-    return () => {
-      mounted = false;
-    };
+    return () =>{
+      setData({})
+        setDataActivity({
+        })
+        setDataSessions({})
+        setDataPerformance({})
+    }
+    
   }, [source, toggleSource, error]);
   return {
     isLoading,

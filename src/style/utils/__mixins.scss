@@ -1,0 +1,5 @@
+@mixin under-small {
+    @media screen and (max-width: map-get($breakpoints, smaller)) {
+      @content;
+    }
+  }

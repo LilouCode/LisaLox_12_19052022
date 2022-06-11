@@ -9,13 +9,18 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { useFetch } from "../service/service";
+import PropTypes from "prop-types";
 import Loader from "../pages/Loader";
 
-////////Fonctions////////
 
-function LineSessionChart() {
-  const {dataActivity, dataSessions, isLoading} = useFetch();
+/**
+ * 
+ * @param {object} dataActivity
+ * @param {object} dataSessions
+ * @param {boolean} isLoading 
+ * @returns LineSessionsChart returns a chart based on the user sessions over a week
+ */
+function LineSessionChart({dataActivity, dataSessions, isLoading}) {
   const dataGoals = dataSessions.sessions;
   const dataDate = dataActivity.sessions;
   //Get day
@@ -121,5 +126,10 @@ const CustomCursor = (props) => {
       </ResponsiveContainer>
     </div>
   );
+}
+LineSessionChart.protoTypes = {
+  dataActivity : PropTypes.object.isRequired,
+  dataSessions : PropTypes.object.isRequired,
+  isLoading : PropTypes.bool.isRequired
 }
 export default LineSessionChart;

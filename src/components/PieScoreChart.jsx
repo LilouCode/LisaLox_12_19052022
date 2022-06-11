@@ -1,8 +1,14 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import Loader from "../pages/Loader";
-import {useFetch} from "../service/service";
-function PieScoreChart() {
-  const {data, isLoading} = useFetch()
+import PropTypes from "prop-types";
+
+/**
+ * 
+ * @param {object} data
+ * @param {boolean} isLoading
+ * @returns PieScoreChart returns a Pie chart based on the user data and shows the daily score 
+ */
+function PieScoreChart({data, isLoading}) {
   const score = data.score;
   const toDo = 1 - score;
   const dataScore = [
@@ -84,5 +90,8 @@ function PieScoreChart() {
     </div>
   );
 }
-
+PieScoreChart.propTypes ={
+  data : PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}
 export default PieScoreChart;

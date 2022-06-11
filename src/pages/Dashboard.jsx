@@ -12,10 +12,13 @@ import lipids from "../assets/svg/lipids.svg";
 import {useFetch} from '../service/service';
 import Loader from "./Loader";
 
+/**
+ * This function renders the dashboard.
+ * @returns The Dashboard component returns a div element with all the graphics
+ */
 function Dashboard() {
-
-  const { data, isLoading } = useFetch();
- 
+  // Data are displayed only after loading
+  const { data, dataActivity, dataSessions, dataPerformance, isLoading } = useFetch();
   return (
     <div className="dashboard">
         {isLoading? <Loader/>
@@ -30,13 +33,13 @@ function Dashboard() {
         <div className="charts">
           <div>
             {isLoading? <Loader/> :
-            <BarWeightChart />
+            <BarWeightChart dataActivity={dataActivity} isLoading={isLoading}/>
             }
           </div>
           <div className="charts__grid">
-            <LineSessionChart />
-            <RadarPerformanceChart />
-            <PieScoreChart />
+            <LineSessionChart dataActivity={dataActivity} dataSessions={dataSessions} isLoading={isLoading} />
+            <RadarPerformanceChart dataPerformance={dataPerformance} isLoading={isLoading} />
+            <PieScoreChart data={data} isLoading={isLoading} />
           </div>
         </div>
         <div className="asside">

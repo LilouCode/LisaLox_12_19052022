@@ -7,11 +7,16 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-import { useFetch } from "../service/service";
+import PropTypes from "prop-types";
 import Loader from "../pages/Loader";
 
-const BarWeightChart = () => {
-  const {dataActivity, isLoading} = useFetch();
+/**
+ * 
+ * @param {object} dataActivity - from useFetch() 
+ * @param {boolean} isLoading - from useFetch()
+ * @returns 
+ */
+const BarWeightChart = ({dataActivity, isLoading}) => {
 
   const data = dataActivity.sessions;
   const CustomTooltip = ({ active, payload }) => {
@@ -100,5 +105,10 @@ const BarWeightChart = () => {
     </div>
   );
 };
+
+BarWeightChart.propTypes = {
+  dataActivity : PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}
 
 export default BarWeightChart;

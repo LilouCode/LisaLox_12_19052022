@@ -1,8 +1,84 @@
-# Getting Started with Create React App
+# Sportsee
+
+SportSee is an application that allows each of its users to follow their progress and achieve their goals thanks to its powerful dashboard!
+
+## To run this project you need :
+
+- Git
+- NodeJs
+- NPM
+- Code editor (Vscode)
+
+## Dependencies
+- [React](https://fr.reactjs.org/) v.17.0.2
+- [React-router-dom]() v.6.3.0
+- [Sass](https://sass-lang.com/) v.1.51.0
+- [Axios](https://axios-http.com/docs/intro) v.0.27.2
+- [Recharts](https://recharts.org/en-US/) v.2.1.10
+- [Prop-Types](https://www.npmjs.com/package/prop-types)
+- [JS Doc](https://jsdoc.app/) v.3.6.10
+
+We strongly recommend that you go to the JSON file to prevent any updates or new features.
+
+## Installation
+
+### Install Backend
+
+To use the entire application you need to clone the backend.
+
+```bash
+git clone https://github.com/LilouCode/P12-back-end-dashboard
+```
+Then in the terminal use
+```bash
+npm i
+```
+And finally launch the application:
+```bash
+npm run start
+```
+
+### Install and start FrontEnd
+As the previous stape you need to clone the FrontEnd repository
+```bash
+git clone https://github.com/LilouCode/LisaLox_12_19052022
+```
+In the terminal use
+```bash
+npm i
+```
+Then launch the application:
+```bash
+npm run start
+```
+When the terminal ask , click ```Y``` for yes
+```bash
+Something is already running on port 3000.
+
+Would you like to run the app on another port instead? » (Y/n)
+```
+And that's it !
+```bash 
+You can now view lisalox_12_19052022 in the browser.
+
+  Local:            http://localhost:3001
+```
+
+## Switch data
+To switch the data to Mock from API you can use the Dev module in the top of the screen and click to button mock/api. it was designed to inform the developer of which data the application is using. 
+
+This is why it was decided to recover a user for each data API.
+If you want to change user, you just have to change this parameter in the ```/src/service/service.jsx``` file
+
+
+## Work files
+This work was done following the [Kanban](https://www.notion.so/Tableau-de-bord-SportSee-2b9e0bf527eb4e14908e386556b29a9c) method and respecting the [Figma](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1) model.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 

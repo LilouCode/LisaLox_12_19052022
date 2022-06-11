@@ -5,6 +5,14 @@ import NavHorizontal from "../components/NavHorizontal";
 import DevSection from "../components/DevSection";
 import { SourceProvider} from "../utils/context";
 
+/**
+ * This function component returns the entire Dasboard App
+ * SourceProvider - to provide source state to the consummers
+ * NavHorizontal-
+ * NavVertical -
+ * Outlet - 
+ * @returns The app returns all the elements of the app with a SourceProvider at the top
+ */
 function App() {
   return (
     <SourceProvider>

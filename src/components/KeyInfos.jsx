@@ -1,4 +1,13 @@
 import PropTypes from "prop-types";
+/**
+ * 
+ * @param {url} src
+ * @param {string} name
+ * @param {number} keyInfo
+ * @param {string} className 
+ * @returns the KeyInfos component returns all the user key 
+ * informations in the asside section with a icon and a tittle for each.
+ */
 function KeyInfos({src, name, keyInfo, className}){
     return(
         <div className="keyCard">

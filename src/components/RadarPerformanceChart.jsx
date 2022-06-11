@@ -6,46 +6,11 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-import { useFetch } from "../service/service";
 import Loader from "../pages/Loader";
+import {getTittle } from "../utils/helpers";
+import PropTypes from "prop-types";
 
-//traduction
-const frenchTranslator = {
-  1: "Cardio",
-  2: "Energie",
-  3: "Endurance",
-  4: "Force",
-  5: "Vitesse",
-  6: "Intensité",
-};
-
-const getTittle = (props) => {
-  const { payload, x, y } = props;
-  const value = payload.value;
-  const side = payload.coordinate;
-
-  return (
-    <text
-      x={x}
-      y={payload.index === 3 ? y + 10 : y}
-      textAnchor={
-        side >= -30 && Math.abs(side) !== 90
-          ? "start"
-          : Math.abs(side) === 90
-          ? "middle"
-          : "end"
-      }
-      margin={5}
-      fill="white"
-      fontSize="12"
-    >
-      {frenchTranslator[value]}
-    </text>
-  );
-};
-
-function RadarPerformanceChart() {
-  const { dataPerformance, isLoading } = useFetch();
+function RadarPerformanceChart({dataPerformance, isLoading}) {
   const data = dataPerformance.data;
   return (
     <div className="chart__square radar">
@@ -81,5 +46,9 @@ function RadarPerformanceChart() {
       </ResponsiveContainer>
     </div>
   );
+}
+RadarPerformanceChart.propTypes = {
+  dataPerformance: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired
 }
 export default RadarPerformanceChart;

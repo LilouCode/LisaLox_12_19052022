@@ -1,8 +1,13 @@
 import {useFetch} from "../service/service"
 import Dashboard from "./Dashboard"
 import Loader from "./Loader"
+
+/**
+ * 
+ * @returns The Home page returns a Loader while the data are fetched
+ */
 function Home (){
-    const {data, isLoading, error} = useFetch()
+    const {isLoading} = useFetch()
     return(
         <div className="home">
             {isLoading ? 

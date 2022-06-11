@@ -14,7 +14,7 @@ import Loader from "../pages/Loader";
  * 
  * @param {object} dataActivity - from useFetch() 
  * @param {boolean} isLoading - from useFetch()
- * @returns 
+ * @returns The components returns a bar chat based on the user carbs and weight
  */
 const BarWeightChart = ({dataActivity, isLoading}) => {
 
